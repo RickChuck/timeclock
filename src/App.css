@@ -1,0 +1,19 @@
+.app-body {
+  text-align: center;
+  background-color: #efefef;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0px;
+  height: 100%;
+}
+
+.app-header{
+  background-color: #292f36;
+  width: auto;
+  height: auto;
+  padding: 1px;
+}
+a{
+  margin: 20px;
+}
