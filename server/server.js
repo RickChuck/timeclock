@@ -23,4 +23,12 @@ app.get('/api/punches', async (req, res) => {
     res.status(200).send(punches)
 })
 
+app.delete('/api/deletePunch', (req, res) => {
+    const db = req.app.get('db')
+    db.delete_punches()
+    .then((updatedPunches) => {
+        res.status(200).send(updatedPunches)
+    })
+})
+
 app.listen(SERVER_PORT, () => console.log(`I hear it on: ${SERVER_PORT}`))

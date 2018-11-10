@@ -19,6 +19,13 @@ class Homepage extends Component {
         })
     }
 
+    handleDelete() {
+        axios.delete('/api/deletePunch')
+        .then(res => {
+            this.setState({myPunches: res.data})
+        })
+    }
+
     render() {
         console.log(this.state.myPunches)
       return (
@@ -35,8 +42,11 @@ class Homepage extends Component {
                                     <h2 id='punch'>{`${el.punch_type}`}</h2>
                                     <h3 id='date'>Date:{`${el.date_id}`}</h3>
                                     <h3>{`${el.day_of_week}`}</h3>
+                                    <h3>{`${el.hour_num}`}</h3>
+                                    <h3>{`${el.minute_num}`}</h3>
+                                    <h3>{`${el.am_pm}`}</h3>
                                     <button><Link to='/editPunch' component={EditPunch}>EDIT</Link></button>
-                                    <button>DELETE</button>
+                                    <button onClick={this.handleDelete}>DELETE</button>
                                 </div>
                             )
                         })
