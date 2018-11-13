@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import './style/Homepage.css'
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import NewPunch from './NewPunch';
-import EditPunch from './EditPunch';
+// import NewPunch from './NewPunch';
+// import EditPunch from './EditPunch';
 
 class Homepage extends Component {
     constructor(props) {
@@ -20,7 +21,8 @@ class Homepage extends Component {
     }
 
     handleDelete() {
-        axios.delete('/api/deletePunch')
+        let punchID = this.props.punchID
+        axios.delete(`/api/deletePunch/${punchID}`)
         .then(res => {
             this.setState({myPunches: res.data})
         })
@@ -36,24 +38,22 @@ class Homepage extends Component {
             <body>
                     <div className='allPunches'>
                     {
-                       this.state.myPunches.map((el) => {
+                       this.state.myPunches.map((el, i) => {
                             return (
-                                <div className='Edit-Delete'>
+                                <div className='punchCard' key={i}>
                                     <h2 id='punch'>{`${el.punch_type}`}</h2>
-                                    <h3 id='date'>Date:{`${el.date_id}`}</h3>
-                                    <h3>{`${el.day_of_week}`}</h3>
-                                    <h3>{`${el.hour_num}`}</h3>
-                                    <h3>{`${el.minute_num}`}</h3>
-                                    <h3>{`${el.am_pm}`}</h3>
-                                    <button><Link to='/editPunch' component={EditPunch}>EDIT</Link></button>
-                                    <button onClick={this.handleDelete}>DELETE</button>
+                                    <h3 id='date'>Date: {`${el.date_id}`}</h3>
+                                    <h3>Day: {`${el.day_of_week}`}</h3>
+                                    <h3>Time: {`${el.hour_num}`}:{`${el.minute_num}`} {`${el.am_pm}`}</h3>
+                                    <Link to='/editPunch'><button className='editBtn'>Edit</button></Link>
+                                    <button className='deleteBtn' onClick={this.handleDelete}>DELETE</button>
                                 </div>
                             )
                         })
                     }
                     </div>
                     <div className='newPunch'>
-                        <button className='newPunchButton'><Link to='/newPunch' component={NewPunch}>New Punch</Link></button>
+                        <Link to='/newPunch'><button className='newPunchBtn'>New Punch</button></Link>
                     </div>
             </body>
         </div>

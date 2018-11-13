@@ -23,9 +23,9 @@ app.get('/api/punches', async (req, res) => {
     res.status(200).send(punches)
 })
 
-app.delete('/api/deletePunch', (req, res) => {
+app.delete('/api/deletePunch/:punch_id', (req, res) => {
     const db = req.app.get('db')
-    db.delete_punches()
+    db.delete_punches([req.params.punch_id])
     .then((updatedPunches) => {
         res.status(200).send(updatedPunches)
     })
