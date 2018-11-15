@@ -32,14 +32,29 @@ app.get('/api/punches', async (req, res) => {
     res.status(200).send(punches);
 });
 
+app.get('/api/getEditPunch/:id', async (req, res) => {
+    const db = req.app.get('db')
+    let punches = await db.get_editPunch([id])
+    res.status(200).send(punches);
+});
+
 app.post('/api/newPunch', async (req, res) => {
     const db = req.app.get('db')
     const { punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm } = req.body;
     const newPunch = await db.add_punch([punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm])
-    .catch();
+    // .catch();
     res.status(200).send(newPunch);
     // console.log(req.body)
 });
+
+app.put('/api/editPunch/:id', async (req, res) => {
+    const db = req.app.get('db');
+    const { punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm } = req.body;
+    const {id} = req.params
+    const updatePunch = await db.edit_punch([punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm, id])
+    res.status(200).send(updatePunch);
+    console.log(req.body)
+})
 
 app.delete('/api/deletePunch/:id', async (req, res) => {
     const db = req.app.get('db')

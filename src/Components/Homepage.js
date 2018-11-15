@@ -29,6 +29,10 @@ class Homepage extends Component {
         })
     }
 
+    updatePunch = (myPunches) => {
+        this.setState({myPunches: myPunches})
+    }
+
     render() {
         console.log(this.state.myPunches)
       return (
