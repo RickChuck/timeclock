@@ -12,22 +12,48 @@
     /* text-align: center; */
 }
 .newTitle {
-    margin: 35px;
-    font-family: 'Oswald', serif
-}
-.date, .time {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     margin: 10px;
+    font-family: 'Oswald', serif;
+    font-size: 50px;
+    font-weight: 100;
+    display: inline-flex;
+    justify-content: center;
 }
-.day {
-    float: right;
+.overall {
+    display: flex;
+    justify-content:center;
+
 }
 
-.timeInputs, .ampm {
- display: flex;
- flex-direction: row
+.time {
+    flex-direction: row;
+    margin: 10px;
+    font-size: 24px;
+}
+.hour, .minute{
+    font-size: 28px;
+}
+.day, .date {
+    /* float: right;
+    position: absolute;
+    left: 27%;
+    top: 29.2%; */
+    margin: 10px;
+    font-size: 24px;
+}
+.punchType {
+    /* position: absolute;
+    left: 27%;
+    top: 45%; */
+    font-size: 24px;
+    margin: 10px;
+}
+
+.timeInputs {
+ /* display: flex;
+ flex-direction: row; */
+}
+.ampm {  
 }
 .cancelBtn {
     background-color: #8c271e;
@@ -59,3 +85,7 @@
 }.createBtn:hover{
     transform: scale(1.1);
 }
+
+/* .date, .time, .day, .timeInputs, .punchType {
+    border: 1px solid;
+} */

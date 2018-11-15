@@ -9,8 +9,9 @@ class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           myPunches: [] 
+           myPunches: [], 
         }
+        this.handleDelete = this.handleDelete.bind(this)
     }
 
     componentDidMount() {
@@ -20,10 +21,10 @@ class Homepage extends Component {
         })
     }
 
-    handleDelete() {
-        let punchID = this.props.punchID
-        axios.delete(`/api/deletePunch/${punchID}`)
+    handleDelete(i) {
+        axios.delete(`/api/deletePunch/${i}`)
         .then(res => {
+            console.log(res.data)
             this.setState({myPunches: res.data})
         })
     }
@@ -46,7 +47,7 @@ class Homepage extends Component {
                                     <h3>Day: {`${el.day_of_week}`}</h3>
                                     <h3>Time: {`${el.hour_num}`}:{`${el.minute_num}`} {`${el.am_pm}`}</h3>
                                     <Link to='/editPunch'><button className='editBtn'>Edit</button></Link>
-                                    <button className='deleteBtn' onClick={this.handleDelete}>DELETE</button>
+                                    <button className='deleteBtn' onClick={() => this.handleDelete(el.punch_id)}>DELETE</button>
                                 </div>
                             )
                         })
