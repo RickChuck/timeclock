@@ -9,7 +9,7 @@ class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           myPunches: [], 
+           myPunches: []
         }
         this.handleDelete = this.handleDelete.bind(this)
     }
@@ -46,10 +46,10 @@ class Homepage extends Component {
                        this.state.myPunches.map((el, i) => {
                             return (
                                 <div className='punchCard' key={i}>
-                                    <h2 id='punch'>{`${el.punch_type}`}</h2>
-                                    <h3 id='date'>Date: {`${el.date_id}`}</h3>
-                                    <h3>Day: {`${el.day_of_week}`}</h3>
-                                    <h3>Time: {`${el.hour_num}`}:{`${el.minute_num}`} {`${el.am_pm}`}</h3>
+                                    <h2 className='punchType'>{`${el.punch_type}`}</h2>
+                                    <h3 className='date'>Date: {`${el.date_id}`}</h3>
+                                    <h3 className='day'>Day: {`${el.day_of_week}`}</h3>
+                                    <h3 className='time'>Time: {`${el.hour_num}`}:{`${el.minute_num}`} {`${el.am_pm}`}</h3>
                                     <Link to='/editPunch'><button className='editBtn'>Edit</button></Link>
                                     <button className='deleteBtn' onClick={() => this.handleDelete(el.punch_id)}>DELETE</button>
                                 </div>

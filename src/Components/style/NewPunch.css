@@ -1,11 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald');
 @import url('https://fonts.googleapis.com/css?family=Cinzel');
 
-.overall {
+.app-editPunch {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    color: #444444e3;
+}
+.overall2 {
+    box-shadow: 0px 7px 6px rgba(27, 32, 37, 0.158);
+    border-radius: 2px;
+    /* margin: 50px; */
+    font-family: 'Cinzel', serif;
+    font-weight: 200;
+    width: 1000px;
+    height: 400px;
+    margin: 30px;
+    background-color: #fcfcfc;
+}
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 .newTitle {
@@ -39,13 +54,13 @@
     /* align-self: flex-end */
 }
 
-.punchType {
+.punchType2 {
     /* position: absolute;
     left: 27%;
     top: 45%; */
     font-size: 24px;
     margin: 10px;
-    align-self: flex-end;
+    align-self: flex-start;
 }
 
 .timeInputs {

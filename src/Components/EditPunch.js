@@ -15,17 +15,34 @@ class EditPunch extends Component {
             minuteNum: '',
             amPm: ''
         }
+        this.getPunchType = this.getPunchType.bind(this);
+        this.getDate = this.getDate.bind(this);
+        this.getDayOfWeek = this.getDayOfWeek.bind(this);
+        this.getHourNum = this.getHourNum.bind(this);
+        this.getMinuteNum = this.getMinuteNum.bind(this);
+        this.getAmPm = this.getAmPm.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
     componentDidMount(id) {
         axios.get(`/api/getEditPunch/${id}`)
         .then(res => {
-           this.setState({punchType: res.data})
+            console.log(res.data)
+            let punch = res.data[0]
+            this.setState({
+                punchType: punch.punchType,
+                dateId: punch.punchType,
+                dayOfWeek: punch.dayOfWeek,
+                hourNum: punch.hourNum,
+                minuteNum: punch.minuteNum,
+                amPm: punch.amPm
+            })
         })
     }
 
     handleEdit(id) {
         axios.put(`/api/editpunch/${id}`)
         .then(res => {
+            // console.log(res.data)
             this.props.updatePunch(res.data)
         })
     }
@@ -55,7 +72,8 @@ class EditPunch extends Component {
                 <div className='titleDiv'>
                     <h1 className='editTitle'>Edit Punch</h1>
                 </div>
-                <div className='overall'>
+                <div className='overall2'>
+                    <div className="card">
                         <div className='date'>
                             <h2>Date: <input type='date' onChange={this.getDate} value={this.state.dateId} /></h2>
                         </div>
@@ -72,19 +90,21 @@ class EditPunch extends Component {
                             </h2>
                         </div>
                         <div className='time'>
-                            <h2>Time: </h2>
+                            <h2 className='timeTitle'>Time: </h2>
                             <h3 className='hour'>HR: <input type='number' min='1' max='12' placeholder='00' onChange={this.getHourNum} value={this.state.hourNum}></input></h3>
                             <h3 className='minute'>Min: <input type='number' min='0' max='59' placeholder='00' onChange={this.getMinuteNum} value={this.state.minuteNum}></input></h3>
                             <select className='ampm' onChange={this.getAmPm} value={this.state.amPm}>
-                                <option>-AM/PM-</option>
+                                <option value='am/pm' disabled>-AM/PM-</option>
+                                <option value='empty option'></option>
                                 <option value='am'>AM</option>
                                 <option value='pm'>PM</option>
                             </select>
 
                         </div>
-                        <div className='punchType'>
+                        <div className='punchType2'>
                             <h2>Punch Type: <select onChange={this.getPunchType} value={this.state.punchType}>
-                                <option disabled selected>IN/OUT</option>
+                                <option value='in/out' disabled>-IN/OUT-</option>
+                                <option value='empty option'></option>
                                 <option value='in'>IN</option>
                                 <option value='out'>OUT</option>
                             </select>
@@ -96,6 +116,7 @@ class EditPunch extends Component {
                         </div>
                     </div>
                 </div>
+            </div>
         )
     }
 }
