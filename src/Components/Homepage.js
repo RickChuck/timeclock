@@ -33,6 +33,7 @@ class Homepage extends Component {
         this.setState({myPunches: myPunches})
     }
 
+
     render() {
         console.log(this.state.myPunches)
       return (

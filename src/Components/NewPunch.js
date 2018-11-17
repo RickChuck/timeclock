@@ -46,6 +46,7 @@ class NewPunch extends Component {
             })
     }
 
+
     render() {
         return (
             <div>
@@ -75,6 +76,8 @@ class NewPunch extends Component {
                                 <h3 className='hour'>HR: <input type='number' min='1' max='12' placeholder='00' onChange={this.getHourNum} value={this.state.hourNum}></input></h3>
                                 <h3 className='minute'>Min: <input type='number' min='00' max='59' placeholder='00' onChange={this.getMinuteNum} value={this.state.minuteNum}></input></h3>
                                 <select className='ampm' onChange={this.getAmPm} value={this.state.amPm}>
+                                    <option value='am/pm' disabled>-AM/PM-</option>
+                                    <option value='empty option'></option>
                                     <option value='am'>AM</option>
                                     <option value='pm'>PM</option>
                                 </select>
@@ -82,6 +85,8 @@ class NewPunch extends Component {
                             </div>
                             <div className='punchType2'>
                                 <h2>Punch Type: <select onChange={this.getPunchType} value={this.state.punchType}>
+                                    <option value='in/out' disabled>-IN/OUT-</option>
+                                    <option value='empty option'></option>
                                     <option value='in'>IN</option>
                                     <option value='out'>OUT</option>
                                 </select>

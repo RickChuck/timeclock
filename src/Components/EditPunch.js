@@ -5,8 +5,8 @@ import axios from 'axios';
 import('./style/EditPunch.css')
 
 class EditPunch extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             punchType: '',
             dateId: '',
@@ -23,8 +23,9 @@ class EditPunch extends Component {
         this.getAmPm = this.getAmPm.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
     }
-    componentDidMount(id) {
-        axios.get(`/api/getEditPunch/${id}`)
+    async componentDidMount() {
+        let id = this.props.match.id
+        await axios.get(`/api/getEditPunch/${id}`)
         .then(res => {
             console.log(res.data)
             let punch = res.data[0]
@@ -39,8 +40,9 @@ class EditPunch extends Component {
         })
     }
 
-    handleEdit(id) {
-        axios.put(`/api/editpunch/${id}`)
+    handleEdit = (id) => {
+        const {punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm} = this.state;
+        axios.put(`/api/editpunch/${id}`, {punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm})
         .then(res => {
             // console.log(res.data)
             this.props.updatePunch(res.data)
