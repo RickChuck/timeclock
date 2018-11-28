@@ -12,6 +12,7 @@ class Homepage extends Component {
            myPunches: []
         }
         this.handleDelete = this.handleDelete.bind(this)
+        this.refreshPage = this.refreshPage.bind(this)
     }
 
     componentDidMount() {
@@ -33,6 +34,10 @@ class Homepage extends Component {
         this.setState({myPunches: myPunches})
     }
 
+    refreshPage() {
+        window.location.reload();
+    }
+
 
     render() {
         console.log(this.state.myPunches)
@@ -51,7 +56,7 @@ class Homepage extends Component {
                                     <h3 className='date'>Date: {`${el.date_id}`}</h3>
                                     <h3 className='day'>Day: {`${el.day_of_week}`}</h3>
                                     <h3 className='time'>Time: {`${el.hour_num}`}:{`${el.minute_num}`} {`${el.am_pm}`}</h3>
-                                    <Link to='/editPunch'><button className='editBtn'>Edit</button></Link>
+                                    <Link to={`/editPunch/${el.punch_id}`}><button className='editBtn'>Edit</button></Link>
                                     <button className='deleteBtn' onClick={() => this.handleDelete(el.punch_id)}>DELETE</button>
                                 </div>
                             )

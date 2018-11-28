@@ -20,7 +20,7 @@ class App extends Component {
             <Switch>
               <Route path='/' component={Homepage} exact/>
               <Route path='/newPunch' component={NewPunch} />
-              <Route path='/editPunch' component={EditPunch} />
+              <Route path='/editPunch/:id' component={EditPunch} />
             </Switch>
           </HashRouter>
         </body>

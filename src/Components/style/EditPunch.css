@@ -10,17 +10,33 @@
     /* margin: 50px; */
     font-family: 'Cinzel', serif;
     font-weight: 200;
-    width: 1000px;
+    width: auto;
     height: 400px;
     margin: 30px;
     background-color: #fcfcfc;
 }
-.card {
+.overall2 {
     display: flex;
     flex-wrap: wrap;
-
+    align-content: inherit;
 }
 
+.date, .day {
+    align-self: center;
+}
+
+.timeTitle {
+    margin: 5px;
+}
+.time {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.save-cancel {
+    align-self: flex-end;
+}
 
 .hour{
     align-self: center;
@@ -34,7 +50,7 @@
 }
 
 .punchType2{ 
-    align-self:flex-start;
+    align-self: center;
 }
 
 input {
@@ -75,3 +91,7 @@ select {
     align-self: flex-start;
     margin: 35px;
 }
+
+/* .day, .date, .time, .hour, .minute, .ampm, .punchType2, .save-cancel {
+    border: solid 1px black;
+} */

@@ -7,7 +7,7 @@ const massive = require('massive');
 const app = express();
 app.use(express.json());
 app.use((req, res, next) => {
-    console.log("Hi I'm middleware");
+    console.log("Hey Listen! I'm middleware");
     next();
 });
 
@@ -34,7 +34,8 @@ app.get('/api/punches', async (req, res) => {
 
 app.get('/api/getEditPunch/:id', async (req, res) => {
     const db = req.app.get('db')
-    let punches = await db.get_editPunch([id])
+    const {id} = req.params
+    let punches = await db.get_editPunch([+id])
     res.status(200).send(punches);
 });
 
@@ -43,7 +44,7 @@ app.post('/api/newPunch', async (req, res) => {
     const { punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm } = req.body;
     const newPunch = await db.add_punch([punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm])
     // .catch();
-    res.status(200).send(newPunch);
+    await res.status(200).send(newPunch);
     // console.log(req.body)
 });
 
@@ -52,7 +53,7 @@ app.put('/api/editPunch/:id', async (req, res) => {
     const { punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm } = req.body;
     const {id} = req.params
     const updatePunch = await db.edit_punch([punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm, id])
-    res.status(200).send(updatePunch);
+    await res.status(200).send(updatePunch);
     console.log(req.body)
 })
 

@@ -15,6 +15,12 @@ class NewPunch extends Component {
             minuteNum: '',
             amPm: ''
         }
+        this.getPunchType = this.getPunchType.bind(this)
+        this.getDate = this.getDate.bind(this)
+        this.getDayOfWeek = this.getDayOfWeek.bind(this)
+        this.getHourNum = this.getHourNum.bind(this)
+        this.getMinuteNum = this.getMinuteNum.bind(this)
+        this.getAmPm = this.getAmPm.bind(this)
         this.handleNewPunch = this.handleNewPunch.bind(this)
     }
 

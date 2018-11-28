@@ -22,31 +22,43 @@ class EditPunch extends Component {
         this.getMinuteNum = this.getMinuteNum.bind(this);
         this.getAmPm = this.getAmPm.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
+        this.refreshPage = this.refreshPage.bind(this);
     }
+
     async componentDidMount() {
-        let id = this.props.match.id
+        let id = this.props.match.params.id
+        // console.log(this.props.id)
         await axios.get(`/api/getEditPunch/${id}`)
         .then(res => {
             console.log(res.data)
-            let punch = res.data[0]
+            let punch = res.data[0];
             this.setState({
-                punchType: punch.punchType,
-                dateId: punch.punchType,
-                dayOfWeek: punch.dayOfWeek,
-                hourNum: punch.hourNum,
-                minuteNum: punch.minuteNum,
-                amPm: punch.amPm
+                punchType: punch.punch_type,
+                dateId: punch.date_id,
+                dayOfWeek: punch.day_of_week,
+                hourNum: punch.hour_num,
+                minuteNum: punch.minute_num,
+                amPm: punch.am_pm
             })
         })
     }
 
-    handleEdit = (id) => {
-        const {punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm} = this.state;
-        axios.put(`/api/editpunch/${id}`, {punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm})
-        .then(res => {
-            // console.log(res.data)
-            this.props.updatePunch(res.data)
-        })
+    // handleEdit = (id) => {
+    //     const {punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm} = this.state;
+    //     axios.put(`/api/editpunch/${id}`, {punchType, dateId, dayOfWeek, hourNum, minuteNum, amPm})
+    //     .then(res => {
+    //         console.log(res.data)
+    //         this.props.updatePunch(res.data)
+    //     })
+    // }
+    
+    handleEdit() {
+        const punch_id = this.props.match.params.id
+        axios.put(`/api/editpunch/${punch_id}`, this.state)
+            .then((res) => {
+                // let punch = res.data[0];
+                console.log(res.data)
+            })
     }
 
     getPunchType = (e) => {
@@ -68,7 +80,12 @@ class EditPunch extends Component {
         this.setState({ amPm: e.target.value })
     }
 
+    refreshPage() {
+        window.location.reload();
+    }
+
     render() {
+        console.log(this.state)
         return (
             <div className='app-editPunch'>
                 <div className='titleDiv'>
@@ -77,7 +94,7 @@ class EditPunch extends Component {
                 <div className='overall2'>
                     <div className="card">
                         <div className='date'>
-                            <h2>Date: <input type='date' onChange={this.getDate} value={this.state.dateId} /></h2>
+                            <h2>Date: <input type='date' onChange={this.getDate} value={this.state.dateId}/></h2>
                         </div>
                         <div className='day'>
                             <h2>Day: <select onChange={this.getDayOfWeek} value={this.state.dayOfWeek}>

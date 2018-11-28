@@ -9,8 +9,9 @@
 } */
 
 .app-header{
+  display: flex;
   background-color: #292f36;
-  width: auto;
+  width: 100%;
   height: auto;
   padding: 1px;
 }
